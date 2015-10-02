@@ -45,98 +45,98 @@ public class SelectAndRAMsortCOPY {
  **/
 
 
-        /**
-         * partition is a helper method for the sorting methods quicksort and randomizedQuicksort which functions
-         * to partition an array into smaller sub-arrays that can be sorted recursively.
-         * @param arr The array to partition.
-         * @param p   The starting point (lower bounds) index of the sub-array to partition.
-         * @param r   The ending point (upper bounds) index of the sub-array to partition.
-         * @return the index to be passed to the calling method
-         */
-        private static int partition(int[] arr, int p, int r) {
-            int x = arr[r];
-            int i = p - 1;
-            for (int j = p;j < r;j++) {
-                if (arr[j] <= x) {
-                    i++;
-                    int swap = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = swap;
-                }
-            }
-            int swap2 = arr[i + 1];
-            arr[i + 1] = arr[r];
-            arr[r] = swap2;
-            return i + 1;
-        }
-        /**
-         * 10 points extra credit: Define a method named radixSort, implementing a base-10 Radix Sort as in the
-         slides/textbook. This will only be a few lines of code to define the radixSort method, but you will also need to
-         create some private helper methods:
-         A private helper method named getDigit to obtain and return the value of a single given base-10 digit's value
-         from a given int value. For example, getDigit(1, 493) would return the value of the "1's place" in 493, which is
-         the number 3. You can make that helper method a purely math function, or instead make it with String methods.
-         A private helper method named countingSortOnDigit, which is a modified version of countingSort with an additional
-         parameter indicating which base-10 digit is to be used for comparisons. (1 for rightmost digit, 2 for second digit
-         from the right, etc.) Make sure your countingSort works properly before you make this new version.  The only
-         difference will be the line(s) of code that directly compare two elements, which will invoke digitOf and use that
-         single digit value, instead of comparing one entire input value with another.
-
-
-
-         RADIX-SORT(A, d)
-         for i = 1 to d
-         invoke a stable sorting algorithm to sort array A on digit i
-
-         */
-
-        public void radixSort(int[] A, int d) {
-            for (int i = 0; i <= d; i++) {
-
-                //invoke stable sorting algorithm to sort array on digit i
+    /**
+     * partition is a helper method for the sorting methods quicksort and randomizedQuicksort which functions
+     * to partition an array into smaller sub-arrays that can be sorted recursively.
+     * @param arr The array to partition.
+     * @param p   The starting point (lower bounds) index of the sub-array to partition.
+     * @param r   The ending point (upper bounds) index of the sub-array to partition.
+     * @return the index to be passed to the calling method
+     */
+    private static int partition(int[] arr, int p, int r) {
+        int x = arr[r];
+        int i = p - 1;
+        for (int j = p;j < r;j++) {
+            if (arr[j] <= x) {
+                i++;
+                int swap = arr[i];
+                arr[i] = arr[j];
+                arr[j] = swap;
             }
         }
-        private int getDigit(int place, int target) {
-            int digit = -1;
-            if (place > target) return digit;
-            return digit;
-        }
+        int swap2 = arr[i + 1];
+        arr[i + 1] = arr[r];
+        arr[r] = swap2;
+        return i + 1;
+    }
+    /**
+     * 10 points extra credit: Define a method named radixSort, implementing a base-10 Radix Sort as in the
+     slides/textbook. This will only be a few lines of code to define the radixSort method, but you will also need to
+     create some private helper methods:
+     A private helper method named getDigit to obtain and return the value of a single given base-10 digit's value
+     from a given int value. For example, getDigit(1, 493) would return the value of the "1's place" in 493, which is
+     the number 3. You can make that helper method a purely math function, or instead make it with String methods.
+     A private helper method named countingSortOnDigit, which is a modified version of countingSort with an additional
+     parameter indicating which base-10 digit is to be used for comparisons. (1 for rightmost digit, 2 for second digit
+     from the right, etc.) Make sure your countingSort works properly before you make this new version.  The only
+     difference will be the line(s) of code that directly compare two elements, which will invoke digitOf and use that
+     single digit value, instead of comparing one entire input value with another.
 
-        /**
-         * MINIMUM(A) // one-indexed array A
-         smallestSoFar = A[1]
-         for i = 2 to A.length
-         if A[i] < smallestSoFar
-         smallestSoFar = A[i]
-         return smallestSoFar
-         */
-        public static int findMax(int[] arr) {
-            int maxSoFar = arr[0];
-            for (int i = 1; i < arr.length; i++) {
-                if (arr[i] > maxSoFar) maxSoFar = arr[i];
-            }
-            return maxSoFar;
+
+
+     RADIX-SORT(A, d)
+     for i = 1 to d
+     invoke a stable sorting algorithm to sort array A on digit i
+
+     */
+
+    public void radixSort(int[] A, int d) {
+        for (int i = 0; i <= d; i++) {
+
+            //invoke stable sorting algorithm to sort array on digit i
         }
-        public static int findMin(int[] arr) {
-            int minSoFar = arr[0];
-            for (int i = 1; i < arr.length; i++) {
-                if (arr[i] < minSoFar) minSoFar = arr[i];
-            }
-            return minSoFar;
+    }
+    private int getDigit(int place, int target) {
+        int digit = -1;
+        if (place > target) return digit;
+        return digit;
+    }
+
+    /**
+     * MINIMUM(A) // one-indexed array A
+     smallestSoFar = A[1]
+     for i = 2 to A.length
+     if A[i] < smallestSoFar
+     smallestSoFar = A[i]
+     return smallestSoFar
+     */
+    public static int findMax(int[] arr) {
+        int maxSoFar = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > maxSoFar) maxSoFar = arr[i];
         }
-        /**
-         * arrayPrinter is a helper method to print the contents of an array of ints.
-         *              starting at index 1.
-         * @param arr The array to be printed.
-         * @return a String that can be printed with System.out.print
-         */
-        public static String arrayPrinter(int[] arr){
-            String result = "";
-            for (int i = 0; i < arr.length; i++) {
-                result += "[" + arr[i] + "]";
-            }
-            return result;
+        return maxSoFar;
+    }
+    public static int findMin(int[] arr) {
+        int minSoFar = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < minSoFar) minSoFar = arr[i];
         }
+        return minSoFar;
+    }
+    /**
+     * arrayPrinter is a helper method to print the contents of an array of ints.
+     *              starting at index 1.
+     * @param arr The array to be printed.
+     * @return a String that can be printed with System.out.print
+     */
+    public static String arrayPrinter(int[] arr){
+        String result = "";
+        for (int i = 0; i < arr.length; i++) {
+            result += "[" + arr[i] + "]";
+        }
+        return result;
+    }
     /**
      *  24 points: Define a method named countingSort. Implement Counting Sort as in the slides/textbook. One parameter
      will be the input array to sort. Another parameter will be a memory allocated array of the same length, for storing
@@ -195,49 +195,48 @@ public class SelectAndRAMsortCOPY {
      *
      * Pseudocode:
      *
-     * RANDOMIZED-QUICKSELECT(A, p, r, i) // one-indexed array A
-     if p == r // base case is length-1 subarray
-     return A[p]
-     z = RANDOM-INT(p, r) //random pivot choice like randomized quicksort
-     swap A[z] with A[r]
-     q = PARTITION(A, p, r) // the same PARTITION used in quicksort
-     k = q - p + 1 // calculate the order statistic k of the pivot
+     * RANDOMIZED-QUICKSELECT(arr, startAt, endAt, i) // one-indexed array arr
+     if startAt == endAt // base case is length-1 subarray
+     return arr[startAt]
+     z = RANDOM-INT(startAt, endAt) //random pivot choice like randomized quicksort
+     swap arr[z] with arr[endAt]
+     q = PARTITION(arr, startAt, endAt) // the same PARTITION used in quicksort
+     k = q - startAt + 1 // calculate the order statistic k of the pivot
      if i == k // check if pivot is the ith order statistic, our answer!
-     return A[q]
+     return arr[q]
      elseif i < k // we’re looking for an earlier order statistic
-     return RANDOMIZED-QUICKSELECT(A, p, q-1, i)
-     else return RANDOMIZED-QUICKSELECT(A, q+1, r, i-k)
+     return RANDOMIZED-QUICKSELECT(arr, startAt, q-1, i)
+     else return RANDOMIZED-QUICKSELECT(arr, q+1, endAt, i-k)
 
      *
      */
-    public static int randomizedQuickSelect(int[] A, int p, int r, int i) {
-        int[] aCopy = Arrays.copyOf(A, A.length);
-        if (p == r) return aCopy[p];
+    public static int randomizedQuickSelect(int[] arr, int startAt, int endAt, int i) {
+        int[] aCopy = Arrays.copyOf(arr, arr.length);
+        if (startAt == endAt) return aCopy[startAt];
         Random myRand = new Random();
-        int z = myRand.nextInt(r - p + 1) + p;
+        int z = myRand.nextInt(endAt - startAt + 1) + startAt;
         int swap = aCopy[z];
-        aCopy[z] = aCopy[r];
-        aCopy[r] = swap;
-        int q = partition(aCopy, p, r);
-        int k = q - p;
+        aCopy[z] = aCopy[endAt];
+        aCopy[endAt] = swap;
+        int q = partition(aCopy, startAt, endAt);
+        int k = q - startAt + 1;
         if (i == k) return aCopy[q];
-        else if (i < k) return randomizedQuickSelect(aCopy, p, q - 1, i);
-        else return randomizedQuickSelect(aCopy, q + 1, r, i - k);
+        else if (i < k) return randomizedQuickSelect(aCopy, startAt, q - 1, i);
+        else return randomizedQuickSelect(aCopy, q + 1, endAt, i - k);
     }
-        public static void main(String[] args) {
-            int[] arr1 = {3,2,1,4};
-            int[] arr2 = new int[arr1.length];
-            // int max = Collections.max(arr1.asList);
-            System.out.println("Initially arr1 looks like this:          "+arrayPrinter(arr1));
-            countingSort(arr1, arr2, findMax(arr1));
-            System.out.println("After countingSort arr1 looks like this: " + arrayPrinter(arr2));
-            System.out.println("The min is arr1 is: "+findMin(arr1));
-            System.out.println("The max in arr1 is: " + findMax(arr1));
-            int arrMin = findMin(arr1);
-            int i = 2;
-            System.out.println("The number that is order " + i + " in this array is: "+randomizedQuickSelect(arr1, 0, arr1.length - 1, i));
+    public static void main(String[] args) {
+        int[] arr1 = {324,21,441,14,77,11,13,101,7,2,17,1};
+        int[] arr2 = new int[arr1.length];
+        System.out.println("Initially the array arr1 looks like this:         "+arrayPrinter(arr1));
+        countingSort(arr1, arr2, findMax(arr1));
+        System.out.println("After countingSort arr1 looks like this: " + arrayPrinter(arr2));
+        System.out.println("After countingSort arr1 actually looks like this: " + arrayPrinter(arr1));
+        System.out.println("The min is arr1 is: "+findMin(arr1));
+        System.out.println("The max in arr1 is: " + findMax(arr1));
+        int arrMin = findMin(arr1);
+        int i = 12;
+        System.out.println("The number that is order " + i + " in this array is: "+randomizedQuickSelect(arr1, 0, arr1.length - 1, i));
 
-        }
+    }
 
 }
-
